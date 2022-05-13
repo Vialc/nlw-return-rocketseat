@@ -55,7 +55,7 @@ export function NavBar({ matters }:NavBarProps ) {
           toggleMenu ? "w-56" : "w-16"
         } z-10 transition-all duration-300 ml-4 py-4 px-2 bg-transparent`}
       >
-        <Popover className="flex h-full bg-orange-300 transition-colors dark:bg-slate-800 py-4 rounded flex-col items-center">
+        <Popover className="flex h-full bg-slate-400 transition-colors dark:bg-slate-800 py-4 rounded flex-col items-center">
           <div className="h-1/6">
             <Popover.Button
               onClick={handleToggleMenu}

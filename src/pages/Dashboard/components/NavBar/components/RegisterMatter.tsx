@@ -30,7 +30,7 @@ export function RegisterMatter({toggleMenu, matters}: ToggleMenuStateProps) {
           disabled={matters!.slice(0, 12).length > 11}
           type="button"
           onClick={openModal}
-          className=" text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className=" dark:text-white text-black transition-colors duration-1000 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
       <Books className={toggleMenu ? "mb-4 ml-3" : "my-4"} size={26} />
 

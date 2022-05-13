@@ -44,8 +44,8 @@ export function MatterOverview({student_id, matter_id, matter }: MatterOverviewP
 
   return (
     <>
-      <div className="relative w-[48%] h-[45%] rounded transition-all bg-slate-500">
-        <div className="w-[30%] h-[30%] text-center align-middle rounded bg-emerald-800 mt-2 ml-2">
+      <div className="relative w-[48%] h-[45%] rounded transition-all bg-slate-400 dark:bg-slate-800">
+        <div className="w-[30%] h-[30%] text-center align-middle rounded bg-teal-600 mt-2 ml-2">
           <span className="text-5xl ">{matter[0]}</span>
         </div>
         <h3 className="pl-2 text-2xl">

@@ -28,7 +28,7 @@ export function MatterArea({ matters, student_id }: MatterAreaProps) {
 
   return (
     <>
-      <div className="flex gap-x-2 flex-wrap columns-2 px-2 pt-6 fl h-full w-1/2 rounded-lg bg-amber-300">
+      <div className="flex gap-x-2 flex-wrap columns-2 px-2 pt-6 fl h-full w-1/2 rounded-lg bg-transparent">
         {matters.slice(matterRangeInitial, matterRangeFinal).map((item) => {
           const { matter, matter_id } = item;
 
@@ -42,7 +42,7 @@ export function MatterArea({ matters, student_id }: MatterAreaProps) {
           );
         })}
 
-        <div className=" w-full max-h-6 bg-sky-700 bottom-0 flex justify-center ">
+        <div className=" w-full max-h-6 bg-transparent bottom-0 flex justify-center ">
           {matters.slice(4, 8).length > 0 ? (
             <>
               <button onClick={handlePageOne}>
