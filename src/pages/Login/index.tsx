@@ -5,16 +5,19 @@ import { AuthContext } from "../../contexts/Auth/AuthContext";
 
 import Logo from '../../assets/logo.svg'
 import Banner from '../../assets/login_banner.svg'
+import { Loading } from "../../components/Loading";
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loginRequesting, setLoginSignupRequesting] = useState(false);
 
   const auth = useContext(AuthContext);
   const navigate = useNavigate()
 
   async function handleSubmitLogin(e: FormEvent) {
     e.preventDefault();
+    setLoginSignupRequesting(true);
 
     const isLogged = await auth.login(email, password);
     if (isLogged) {
@@ -43,7 +46,9 @@ export function Login() {
             <p className="text-slate-900 font-bold w-full text-xl mb-[5vh]">Preencha seus dados para entrar</p>
             <input className="rounded-2xl mb-6 text-black" type="email" required onChange={e => setEmail(e.target.value)} placeholder="E-mail" />
             <input className="rounded-2xl mb-6 text-black" type="password" required onChange={e => setPassword(e.target.value)} placeholder="Senha" />
-            <button className="rounded-2xl mb-6 bg-brand-500 p-2 text-lg w-1/2 self-center text-black" type="submit">Entrar</button>
+            <button className="rounded-2xl mb-6 bg-brand-500 p-2 text-lg w-1/2 self-center text-black" type="submit">
+              {loginRequesting ? <Loading /> : <>Entrar</>}
+              </button>
           </form>
           <div className="pl-4 w-full">
             <h3 className="flex flex-wrap text-black w-full">Ainda não tem uma conta? </h3>

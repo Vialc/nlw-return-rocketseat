@@ -3,6 +3,8 @@ import { api } from "../../lib/api";
 
 import Logo from '../../assets/logo.svg'
 import Banner from '../../assets/login_banner.svg'
+import { Loading } from "../../components/Loading";
+import { SuccessModal } from "../../components/SuccessModal";
 
 export function Register() {
   const [first_name, setFirst_name] = useState('');
@@ -13,11 +15,13 @@ export function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user_type, setUser_type] = useState('student');
-  const [studentId, setStudentId] = useState('');
+  const [SignupRequesting, setSignupRequesting] = useState(false);
+  const [requestSuccess, setRequestSuccess] = useState(false)
 
 
   async function HandleSignup(e: FormEvent) {
     e.preventDefault()
+    setSignupRequesting(true)
 
     api.post('/users', {
       "first_name": first_name,
@@ -33,7 +37,8 @@ export function Register() {
       }
     })
 
-    console.log('success')
+    setSignupRequesting(false)
+    setRequestSuccess(true)
   }
 
 
@@ -63,12 +68,15 @@ export function Register() {
             </div>
             <input className="rounded-2xl w-full mb-6 text-black" type="email" onChange={e => setEmail(e.target.value)} placeholder="E-mail" />
             <input className="rounded-2xl w-full mb-6 text-black" type="password" onChange={e => setPassword(e.target.value)} placeholder="Senha" />
-            <button className="rounded-2xl mb-6 bg-brand-500 p-2 text-lg w-1/2 self-center text-black" onClick={HandleSignup} type="submit">Cadastrar</button>
+            <button className="rounded-2xl mb-6 bg-brand-500 p-2 text-lg w-1/2 self-center text-black" onClick={HandleSignup} type="submit">
+              { SignupRequesting ? <Loading /> : <p>Cadastrar</p>}
+              </button>
           </form>
           <div>
             <h3 className="flex flex-wrap text-black w-full">Já possui uma conta? </h3>
             <a className="w-auto font-semibold text-purple-900" href="/login">Fazer Login</a>
           </div>
+          {requestSuccess ? <SuccessModal /> : <></>}
         </div>
       </div>
     </div>
