@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../../../../../../lib/api";
+import { HandleRefreshCounts } from "../../../Header/components/Stopwatch";
 
 
 interface MatterOverviewProps {
@@ -44,15 +45,15 @@ export function MatterOverview({student_id, matter_id, matter }: MatterOverviewP
 
   return (
     <>
-      <div className="relative w-[48%] h-[45%] rounded transition-all bg-slate-400 dark:bg-slate-800">
+      <div className="relative w-[48%] h-[45%] rounded transition-all bg-slate-400 dark:bg-slate-800 shadow-md shadow-slate-800 dark:shadow-brand-500">
         <div className="w-[30%] h-[30%] text-center align-middle rounded bg-teal-600 mt-2 ml-2">
-          <span className="text-5xl ">{matter[0]}</span>
+          <span className="text-5xl ">{matter[0].toUpperCase()}</span>
         </div>
-        <h3 className="pl-2 text-2xl">
+        <h3 className="pl-2 text-base md:text-2xl">
           {matter}
         </h3>
         <div className="absolute flex flex-col bottom-0">
-        <h4 className="pl-2 text-lg">
+        <h4 className="pl-2 text-xs md:text-sm lg:text-lg">
           tempo de estudo total:
         </h4>
         <div className="text-center">

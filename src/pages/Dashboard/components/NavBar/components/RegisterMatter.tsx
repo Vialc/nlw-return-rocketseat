@@ -6,30 +6,29 @@ import { RegisterMatterForm } from "./RegisterMatterForm";
 
 export interface RegisterMatterProps {
   closeModal:  () => void;
+  student_id: string
 }
 
 
 
-export function RegisterMatter({toggleMenu, matters}: ToggleMenuStateProps) {
+export function RegisterMatter({toggleMenu, matters, student_id}: ToggleMenuStateProps) {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
-    
+    window.location.reload()
   }
 
   function openModal() {
     setIsOpen(true)
-    console.log(matters)
   }
   return (
     <>
-    <div className="flex">
+    <div className="flex hover:cursor-pointer" onClick={openModal}>
 
     <button
           disabled={matters!.slice(0, 12).length > 11}
           type="button"
-          onClick={openModal}
           className=" dark:text-white text-black transition-colors duration-1000 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
       <Books className={toggleMenu ? "mb-4 ml-3" : "my-4"} size={26} />
@@ -62,17 +61,17 @@ export function RegisterMatter({toggleMenu, matters}: ToggleMenuStateProps) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden shadow-slate-800 dark:shadow-purple-900 rounded-2xl bg-slate-200 dark:bg-slate-900 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="relative text-lg font-medium leading-6 text-gray-900"
+                    className="relative text-lg font-medium leading-6 text-gray-900 dark:text-slate-50"
                   >
                     Cadastrar Matéria
                     <button type="button" className="absolute top-0 right-0 hover:cursor-pointer" onClick={closeModal}>
                     <X  />
                     </button>
                   </Dialog.Title>
-                  <RegisterMatterForm closeModal={closeModal} />
+                  <RegisterMatterForm student_id={student_id}  closeModal={closeModal} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

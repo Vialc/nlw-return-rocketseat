@@ -1,10 +1,13 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { X } from "phosphor-react";
 import { FormEvent, Fragment, useState } from "react";
+import { MatterList } from "../../../../../components/MatterList";
 import { Stopwatch } from "./Stopwatch";
 
 export interface StartButtonActions {
   closeModal:  () => void;
+  matter_id: number;
+  student_id: string;
 }
 
 interface StartButtonProps {
@@ -14,13 +17,19 @@ interface StartButtonProps {
 
 export function StartButton({ matters, student_id}: StartButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [matterId, setMatterId] = useState(0);
 
   function closeModal() {
     setIsOpen(false);
+    window.location.reload()
   }
 
   function openModal() {
     setIsOpen(true);
+  }
+
+  function MatterIdSelected( currentMatterId: number) {
+    setMatterId(currentMatterId)
   }
 
   return (
@@ -60,21 +69,23 @@ export function StartButton({ matters, student_id}: StartButtonProps) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-orange-400 p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden shadow-slate-800 dark:shadow-purple-900 rounded-2xl bg-slate-200 dark:bg-slate-900 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-lg font-medium leading-6 text-gray-900 dark:text-slate-50"
                   >
-                    Payment successful
+                    Qual matéria você quer estudar?
                     <button
                       type="button"
-                      className="absolute top-1 right-3 hover:cursor-pointer"
+                      className="absolute top-2 right-5 hover:cursor-pointer"
                       onClick={closeModal}
                     >
-                      <X />
+                      <X className="dark:text-white" weight="bold"/>
                     </button>
+                    <MatterList MatterIdSelected={MatterIdSelected} matters={matters}/>
                   </Dialog.Title>
-                  <Stopwatch closeModal={closeModal} />
+                  
+                  <Stopwatch matter_id={matterId} student_id={student_id} closeModal={closeModal} />
                   <div className="mt-4">
               
                   </div>

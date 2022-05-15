@@ -28,7 +28,7 @@ export function MatterArea({ matters, student_id }: MatterAreaProps) {
 
   return (
     <>
-      <div className="flex gap-x-2 flex-wrap columns-2 px-2 pt-6 fl h-full w-1/2 rounded-lg bg-transparent">
+      <div className="flex gap-x-2 flex-wrap columns-2 px-2 pt-6 h-full w-[80vw] md:w-1/2 rounded-lg bg-transparent">
         {matters.slice(matterRangeInitial, matterRangeFinal).map((item) => {
           const { matter, matter_id } = item;
 
@@ -63,15 +63,15 @@ export function MatterArea({ matters, student_id }: MatterAreaProps) {
             <>
               <button>
                 {" "}
-                <Circle size={12} weight="fill" className="opacity-30" />{" "}
+                <Circle size={12} weight="fill" className="disabled:opacity-30" />{" "}
               </button>
               <button>
                 {" "}
-                <Circle size={12} weight="fill" className="opacity-30" />{" "}
+                <Circle size={12} weight="fill" className="disabled:opacity-30" />{" "}
               </button>
               <button>
                 {" "}
-                <Circle size={12} weight="fill" className="opacity-30" />{" "}
+                <Circle size={12} weight="fill" className="disabled:opacity-30" />{" "}
               </button>
             </>
           )}

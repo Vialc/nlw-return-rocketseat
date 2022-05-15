@@ -28,14 +28,14 @@ export function Dashboard({ student_id }: DashboardProps) {
       goal,
       matters
     }));
-    console.log(res.data)
 });
 }, [] )
+
 
 const matters = user.matters
 
   return (<div>
-    <NavBar matters={matters} />
+    <NavBar student_id={student_id} matters={matters} />
     {user.student_id ? (
       <>
     <Header student_id={user.student_id} matters={matters} first_name={user.first_name} />

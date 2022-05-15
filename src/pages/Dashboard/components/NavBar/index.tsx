@@ -14,13 +14,15 @@ import { Settings } from "./components/Settings";
 export interface ToggleMenuStateProps {
   toggleMenu: boolean;
   matters: [];
+  student_id: string;
 }
 
 interface NavBarProps {
   matters: [];
+  student_id: string;
 }
 
-export function NavBar({ matters }:NavBarProps ) {
+export function NavBar({ matters, student_id }:NavBarProps ) {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [enabled, setEnabled] = useState(false);
 
@@ -51,11 +53,11 @@ export function NavBar({ matters }:NavBarProps ) {
   return (
     <>
       <div
-        className={`absolute h-screen ${
+        className={`absolute h-28 md:h-screen ${
           toggleMenu ? "w-56" : "w-16"
         } z-10 transition-all duration-300 ml-4 py-4 px-2 bg-transparent`}
       >
-        <Popover className="flex h-full bg-slate-400 transition-colors dark:bg-slate-800 py-4 rounded flex-col items-center">
+        <Popover className="flex h-[50vh]  md:h-full shadow-md shadow-slate-800 dark:shadow-brand-500 bg-slate-400 transition-colors dark:bg-slate-800 py-4 rounded flex-col items-center">
           <div className="h-1/6">
             <Popover.Button
               onClick={handleToggleMenu}
@@ -76,12 +78,12 @@ export function NavBar({ matters }:NavBarProps ) {
             enterTo="opacity-100"
           >
             <Popover.Panel className="h-4/6 flex flex-col w-full">
-              <HomeButton matters={matters} toggleMenu={toggleMenu} />
+              <HomeButton student_id={student_id} matters={matters} toggleMenu={toggleMenu} />
               
-              <RegisterMatter matters={matters} toggleMenu={toggleMenu} />
+              <RegisterMatter student_id={student_id} matters={matters} toggleMenu={toggleMenu} />
               
-              <Settings matters={matters}  toggleMenu={toggleMenu} />
-              <ExitButton matters={matters} toggleMenu={toggleMenu} />
+              <Settings student_id={student_id} matters={matters}  toggleMenu={toggleMenu} />
+              <ExitButton student_id={student_id} matters={matters} toggleMenu={toggleMenu} />
             </Popover.Panel>
           </Transition>
           <Transition
@@ -91,10 +93,10 @@ export function NavBar({ matters }:NavBarProps ) {
             enterFrom="opacity-0"
             enterTo="opacity-100"
           >
-            <HomeButton matters={matters} toggleMenu={toggleMenu} />
-            <RegisterMatter matters={matters} toggleMenu={toggleMenu}/>
-            <Settings matters={matters} toggleMenu={toggleMenu} />
-            <ExitButton matters={matters} toggleMenu={toggleMenu} />
+            <HomeButton student_id={student_id} matters={matters} toggleMenu={toggleMenu} />
+            <RegisterMatter student_id={student_id} matters={matters} toggleMenu={toggleMenu}/>
+            <Settings student_id={student_id} matters={matters} toggleMenu={toggleMenu} />
+            <ExitButton student_id={student_id} matters={matters} toggleMenu={toggleMenu} />
           </Transition>
           <div className="h-1/6 transition-transform duration-1000">
             <Switch
