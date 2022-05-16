@@ -6,6 +6,7 @@
 </div>
 <div></div>
 
+As modificações no projeto ocorreram no backend e no front. Para ver as mudanças no backend acesse
 Repositório do Backend : https://github.com/Vialc/study_count_server
 
 
