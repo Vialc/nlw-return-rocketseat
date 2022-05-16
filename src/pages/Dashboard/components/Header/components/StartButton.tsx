@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { X } from "phosphor-react";
 import { FormEvent, Fragment, useState } from "react";
+import { FirstMatter } from "../../../../../components/FirstMatter";
 import { MatterList } from "../../../../../components/MatterList";
 import { Stopwatch } from "./Stopwatch";
 
@@ -18,6 +19,7 @@ interface StartButtonProps {
 export function StartButton({ matters, student_id}: StartButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [matterId, setMatterId] = useState(0);
+  const [firstMatter, setFirstMatter] = useState(false)
 
   function closeModal() {
     setIsOpen(false);
@@ -25,7 +27,13 @@ export function StartButton({ matters, student_id}: StartButtonProps) {
   }
 
   function openModal() {
-    setIsOpen(true);
+    if (matters.length > 0) {
+      setIsOpen(true);
+    }
+    else {
+      setFirstMatter(true)
+    }
+    
   }
 
   function MatterIdSelected( currentMatterId: number) {
@@ -43,6 +51,8 @@ export function StartButton({ matters, student_id}: StartButtonProps) {
           Começar os Estudos
         </button>
       </div>
+
+      {firstMatter ? <FirstMatter closeModal={closeModal} student_id={student_id}  /> : null}
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={() => {}}>
